@@ -1,3 +1,6 @@
+//const notes = require('notesRouter.js');
+//new edit
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -73,6 +76,7 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
+  console.info(`the new note is ${newNote}`)
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
