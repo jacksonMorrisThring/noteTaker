@@ -50,7 +50,7 @@ notes.post('/', (req, res) => {
       // Variable for the object we will save
       var array = [];
       console.info('ABOUT TO PRINT THE ARRAY');
-      array = fs.readFileSync(path.resolve(__dirname, "../db/database.json"), {encoding:'utf8', flag:'r'}, (data) => console.log(data));
+      array = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../db/database.json"), {encoding:'utf8', flag:'r'}, (data) => console.log(data)));
       console.log(array);
 
       
@@ -70,7 +70,7 @@ notes.post('/', (req, res) => {
       console.log(array);
 
 
-      fs.appendFile((path.resolve(__dirname, "../db/database.json")), JSON.stringify(body, null, 4), (err) => {
+      fs.writeFileSync((path.resolve(__dirname, "../db/database.json")), JSON.stringify(array, null, 4), (err) => {
         if (err){
           throw err;
         }
@@ -83,7 +83,7 @@ notes.post('/', (req, res) => {
         status: 'success',
         body: body
       };
-  
+        console.log('response is');
         console.info(response);
 
       res.json(response);
